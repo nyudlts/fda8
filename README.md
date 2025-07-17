@@ -1,36 +1,22 @@
-
-# DSpace
-
-[![Build Status](https://github.com/DSpace/DSpace/workflows/Build/badge.svg)](https://github.com/DSpace/DSpace/actions?query=workflow%3ABuild)
-
-[DSpace Documentation](https://wiki.lyrasis.org/display/DSDOC/) |
-[DSpace Releases](https://github.com/DSpace/DSpace/releases) |
-[DSpace Wiki](https://wiki.lyrasis.org/display/DSPACE/Home) |
-[Support](https://wiki.lyrasis.org/display/DSPACE/Support)
-
 ## Overview
 
-DSpace open source software is a turnkey repository application used by more than
-2,000 organizations and institutions worldwide to provide durable access to digital resources.
-For more information, visit http://www.dspace.org/
+Faculty Digital Archive is a repository of NYU scholarship, allowing digital works—text, audio, video, data, and more—to be reliably shared and securely stored. Faculty Digital Archive uses DSpace open source software.
+This repositoy is a fork of Dspace version 8. 
 
-DSpace consists of both a Java-based backend and an Angular-based frontend.
+Faculty Digital Archive consists of both a Java-based backend and an Angular-based frontend.
 
 * Backend (this codebase) provides a REST API, along with other machine-based interfaces (e.g. OAI-PMH, SWORD, etc)
     * The REST Contract is at https://github.com/DSpace/RestContract
-* Frontend (https://github.com/DSpace/dspace-angular/) is the User Interface built on the REST API
+* Frontend (https://github.com/nyudlts/fda8-angular/ which is the fork of https://github.com/DSpace/dspace-angular/) is the User Interface built on the REST API
 
-Prior versions of DSpace (v6.x and below) used two different UIs (XMLUI and JSPUI). Those UIs are no longer supported in v7 and above.
-* A maintenance branch for older versions is still available, see `dspace-6_x` for 6.x maintenance.
+For more information about DSpace, visit http://www.dspace.org/
 
-## Downloads
+Detailed Documentation for  DSpace 8 release may be viewed online or downloaded via  [Documentation Wiki](https://wiki.lyrasis.org/display/DSDOC8x).
 
-* Backend (REST API): https://github.com/DSpace/DSpace/releases
-* Frontend (User Interface): https://github.com/DSpace/dspace-angular/releases
+Instructions provided below are mostly copied from upstream [dspace repository](https://github.com/DSpace/DSpace) repository with some local modifications
 
 ## Documentation / Installation
 
-Documentation for each release may be viewed online or downloaded via our [Documentation Wiki](https://wiki.lyrasis.org/display/DSDOC/).
 
 The latest DSpace Installation instructions are available at:
 https://wiki.lyrasis.org/display/DSDOC8x/Installing+DSpace
@@ -41,10 +27,47 @@ More information about these and all other prerequisites can be found in the Ins
 
 ## Running DSpace 8 in Docker
 
-NOTE: At this time, we do not have production-ready Docker images for DSpace.
-That said, we do have quick-start Docker Compose scripts for development or testing purposes.
+NOTE: At this time, DSpace do not have production-ready Docker images.
+We use quick-start Docker Compose scripts to build development or testing environment.
+Below are quick instructions on how you can build development environment with local test data
 
-See [Running DSpace 8 with Docker Compose](dspace/src/main/docker-compose/README.md)
+## To build DSpace images using code in your branch
+```
+docker compose -f docker-compose.yml -f docker-compose-cli.yml build
+```
+
+OPTIONALLY, you can build DSpace images using a different JDK_VERSION like this:
+```
+docker compose -f docker-compose.yml -f docker-compose-cli.yml build --build-arg JDK_VERSION=17
+```
+Default is Java 11, but other LTS releases (e.g. 17) are also supported.
+
+## Run DSpace 8 REST from your current branch
+```
+docker compose -p d8 up -d
+```
+Application will be available at http://localhost:8080/server/#/server/api
+
+## Rebuild database and index with local data
+
+1. Delete existing database
+   ```
+   # Before doing so, it sets "db.cleanDisabled=false".
+   # WARNING: This will delete all your data. It's just an example of how to do so.
+  docker compose -p d8 exec -e "db__P__cleanDisabled=false" dspace /dspace/bin/dspace database clean
+  ```
+2. Copy local data to db container
+    ```
+    docker cp local_dump.sql dspacedb:local_dump.sql
+    docker compose -p d8 exec dspacedb psql -U dspace -f local_dump.sql
+   ```
+
+3. Finally, reindex all database contents into Solr 
+    ```
+    docker compose -p d8 exec dspace /dspace/bin/dspace index-discovery -b
+   ```
+
+Here are more detailed instructions on [running DSpace 8 with Docker Compose](dspace/src/main/docker-compose/README.md)
 
 ## Contributing
 
@@ -52,8 +75,10 @@ See [Contributing documentation](CONTRIBUTING.md)
 
 ## Getting Help
 
+We have internal slack channel dedicated to Faculty Digital Archive upgrade to Dspace version 8.
+
 DSpace provides public mailing lists where you can post questions or raise topics for discussion.
-We welcome everyone to participate in these lists:
+
 
 * [dspace-community@googlegroups.com](https://groups.google.com/d/forum/dspace-community) : General discussion about DSpace platform, announcements, sharing of best practices
 * [dspace-tech@googlegroups.com](https://groups.google.com/d/forum/dspace-tech) : Technical support mailing list. See also our guide for [How to troubleshoot an error](https://wiki.lyrasis.org/display/DSPACE/Troubleshoot+an+error).
@@ -61,17 +86,6 @@ We welcome everyone to participate in these lists:
 
 Great Q&A is also available under the [DSpace tag on Stackoverflow](http://stackoverflow.com/questions/tagged/dspace)
 
-Additional support options are at https://wiki.lyrasis.org/display/DSPACE/Support
-
-DSpace also has an active service provider network. If you'd rather hire a service provider to
-install, upgrade, customize, or host DSpace, then we recommend getting in touch with one of our
-[Registered Service Providers](http://www.dspace.org/service-providers).
-
-## Issue Tracker
-
-DSpace uses GitHub to track issues:
-* Backend (REST API) issues: https://github.com/DSpace/DSpace/issues
-* Frontend (User Interface) issues: https://github.com/DSpace/dspace-angular/issues
 
 ## Testing
 

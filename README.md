@@ -54,13 +54,13 @@ Application will be available at http://localhost:8080/server/#/server/api
    ```
    # Before doing so, it sets "db.cleanDisabled=false".
    # WARNING: This will delete all your data. It's just an example of how to do so.
-  docker compose -p d8 exec -e "db__P__cleanDisabled=false" dspace /dspace/bin/dspace database clean
-  ```
+   docker compose -p d8 exec -e "db__P__cleanDisabled=false" dspace /dspace/bin/dspace database clean
+   ```
 2. Copy local data to db container
     ```
     docker cp local_dump.sql dspacedb:local_dump.sql
     docker compose -p d8 exec dspacedb psql -U dspace -f local_dump.sql
-   ```
+    ```
 
 3. Finally, reindex all database contents into Solr 
     ```

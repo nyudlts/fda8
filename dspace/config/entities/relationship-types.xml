@@ -19,6 +19,19 @@
         <copyToLeft>true</copyToLeft>
     </type>
     <type>
+        <leftType>Syllabus</leftType>
+        <rightType>Person</rightType>
+        <leftwardType>isAuthorOfSyllabus</leftwardType>
+        <rightwardType>isSyllabusOfAuthor</rightwardType>
+        <leftCardinality>
+            <min>0</min>
+        </leftCardinality>
+        <rightCardinality>
+            <min>0</min>
+        </rightCardinality>
+        <copyToLeft>true</copyToLeft>
+    </type>
+    <type>
         <leftType>Publication</leftType>
         <rightType>Project</rightType>
         <leftwardType>isProjectOfPublication</leftwardType>
@@ -129,20 +142,5 @@
             <min>0</min>
         </rightCardinality>
         <copyToRight>true</copyToRight>
-    </type>  
-    <type>
-        <leftType>Syllabus</leftType>
-        <rightType>Publication</rightType> <!-- Or any other existing entity type -->
-        <leftLabel>hasAssociationWith</leftLabel>
-        <rightLabel>hasAssociationWith</rightLabel>
-        <leftCardinality>
-            <min>0</min>
-            <!-- <max>1</max> (optional: specify maximum if needed) -->
-        </leftCardinality>
-        <rightCardinality>
-            <min>0</min>
-            <!-- <max>unlimited</max> (optional: specify maximum if needed) -->
-        </rightCardinality>
     </type>
-    
 </relationships>

@@ -239,9 +239,9 @@ public class OpenSearchControllerIT extends AbstractControllerIntegrationTest {
                 .andExpect(content().contentType("application/opensearchdescription+xml;charset=UTF-8"))
                 // and there need to be some values taken from the test configuration
                 .andExpect(xpath("OpenSearchDescription/ShortName").string("DSpace"))
-                .andExpect(xpath("OpenSearchDescription/LongName").string("DSpace at My University"))
+                .andExpect(xpath("OpenSearchDescription/LongName").string("Faculty Digital Archive"))
                 .andExpect(xpath("OpenSearchDescription/Description")
-                        .string("DSpace at My University DSpace repository"))
+                        .string("Faculty Digital Archive DSpace repository"))
                 .andExpect(xpath("OpenSearchDescription/Url[@type='text/html']/@template")
                         .string("http://localhost:4000/search?query={searchTerms}"))
                 .andExpect(xpath("OpenSearchDescription/Url[@type='application/atom+xml; charset=UTF-8']/@template")
@@ -255,7 +255,7 @@ public class OpenSearchControllerIT extends AbstractControllerIntegrationTest {
             <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
                 <ShortName>DSpace</ShortName>
                 <LongName>DSpace at My University</LongName>
-                <Description>DSpace at My University DSpace repository</Description>
+                <Description>Faculty Digital Archive DSpace repository</Description>
                 <InputEncoding>UTF-8</InputEncoding>
                 <OutputEncoding>UTF-8</OutputEncoding>
                 <Query role="example" searchTerms="photosyntesis" />

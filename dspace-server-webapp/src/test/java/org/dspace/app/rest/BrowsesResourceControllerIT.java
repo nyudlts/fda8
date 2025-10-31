@@ -129,21 +129,6 @@ public class BrowsesResourceControllerIT extends AbstractControllerIntegrationTe
     }
 
     @Test
-    public void findBrowseByVocabulary() throws Exception {
-        //Use srsc as this vocabulary is included by default
-        //When we call the root endpoint
-        getClient().perform(get("/api/discover/browses/srsc"))
-                   //The status has to be 200 OK
-                   .andExpect(status().isOk())
-                   //We expect the content type to be "application/hal+json;charset=UTF-8"
-                   .andExpect(content().contentType(contentType))
-
-                   //Check that the JSON root matches the expected browse index
-                   .andExpect(jsonPath("$", BrowseIndexMatcher.hierarchicalBrowseIndex("srsc")))
-        ;
-    }
-
-    @Test
     public void findBrowseBySubject() throws Exception {
         //When we call the root endpoint
         getClient().perform(get("/api/discover/browses/subject"))

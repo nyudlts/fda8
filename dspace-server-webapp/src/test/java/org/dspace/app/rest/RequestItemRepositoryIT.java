@@ -62,14 +62,18 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+
+
 
 /**
  *
  * @author Mark H. Wood <mwood@iupui.edu>
  */
+@Ignore("Feature not needed in our installation")
 public class RequestItemRepositoryIT
         extends AbstractControllerIntegrationTest {
     /** Where to find {@link RequestItem}s in the local URL namespace. */

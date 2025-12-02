@@ -2,13 +2,20 @@
 ##
 ## See org.dspace.core.Email for information on the format of this file.
 ##
-#set($subject = "Welcome new registered ${config.get('dspace.name')} user!")
-Thank you for registering an account. Your new account can be used immediately
-to subscribe to notices of new content arriving in collections of your choice.
+#set($subject = "Welcome NYU registered ${config.get('dspace.name')} user")
 
-Your new account can also be granted privileges to submit new content, or to
-edit and/or approve submissions.
+Thank you for signing into the Faculty Digital Archive repository as an NYU affiliated user. When you sign in, you are able to view content that is restricted to the NYU community. 
 
-If you need assistance with your account, please email ${config.get("mail.helpdesk")}.
+Your NYU account can also be granted privileges to deposit scholarly content to the Faculty Digital Archive for the purpose of open access publishing and long term preservation. 
 
-The ${config.get('dspace.name')} Team
+In order to deposit content, you must first request a collection to which you will be assigned as a submitter. 
+
+Contact archive.help@nyu.edu with a request for a new collection to be created for you by the service team.
+Please include:
+What will the collection be called?
+Do you need an embargo for the material that you will deposit? 
+
+For more information, please refer to the <a href="https://archive.nyu.edu/about"> NYU Faculty Digital Archive Guidelines</a>.
+
+Thank you, 
+The Faculty Digital Archive service team at New York University Libraries

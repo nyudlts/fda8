@@ -37,4 +37,8 @@
         <property name="notifyPatternToTriggerService" ref="org.dspace.app.ldn.service.impl.NotifyPatternToTriggerImpl"/>
     </bean>
 
+    <bean name="accessibility"
+          class="org.dspace.app.rest.submit.step.validation.AccessibilityValidation">
+        <property name="name" value="accessibility"/>
+    </bean>
 </beans>

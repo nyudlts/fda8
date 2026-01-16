@@ -254,6 +254,13 @@
             <type>duplicates</type>
         </step-definition>
 
+        <!-- Read accessibility guidelines step -->
+        <step-definition id="accessibility">
+            <heading>submit.progressbar.accessibility</heading>
+            <processing-class>org.dspace.app.rest.submit.step.AccessibilityStep</processing-class>
+            <type>accessibility</type>
+        </step-definition>
+
     </step-definitions>
 
     <!-- The submission-definitions map lays out the detailed definition of -->
@@ -309,6 +316,7 @@
 
             <!--Step will be to Sign off on the required DSpace License agreement -->
             <step id="license"/>
+            <step id="accessibility"/>
         </submission-process>
 
         <!--

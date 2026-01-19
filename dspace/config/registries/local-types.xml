@@ -23,6 +23,21 @@
     <namespace>http://dspace.org/namespace/local/</namespace>
   </dc-schema>
 
+
+    <dc-type>
+            <schema>local</schema>
+            <element>accessibility</element>
+            <qualifier>acknowledged</qualifier>
+            <scope_note>Accessibility guidelines acknowledgment status</scope_note>
+        </dc-type>
+
+        <dc-type>
+            <schema>local</schema>
+            <element>accessibility</element>
+            <qualifier>acknowledgedDate</qualifier>
+            <scope_note>Date when accessibility guidelines were acknowledged</scope_note>
+        </dc-type>
+
 <!--
   <dc-type>
     <schema>local</schema>

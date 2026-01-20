@@ -26,10 +26,16 @@ import org.dspace.builder.CollectionBuilder;
 import org.dspace.builder.CommunityBuilder;
 import org.dspace.builder.EPersonBuilder;
 import org.dspace.builder.WorkspaceItemBuilder;
+import org.dspace.content.factory.ContentServiceFactory;
+import org.dspace.content.MetadataSchema;
 import org.dspace.content.Collection;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.content.service.ItemService;
+import org.dspace.content.service.MetadataFieldService;
+import org.dspace.content.service.MetadataSchemaService;
 import org.dspace.eperson.EPerson;
+import org.dspace.core.Context;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,8 +45,43 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Tests the REST API endpoints for the accessibility acknowledgment step,
  * including retrieving step data and processing PATCH operations.
  */
+
+
 public class SubmissionAccessibilityStepRestRepositoryIT extends AbstractControllerIntegrationTest {
 
+    @BeforeClass
+    public static void setupMetadataFields() throws Exception {
+        Context context = new Context();
+        context.turnOffAuthorisationSystem();
+
+        try {
+            MetadataSchemaService schemaService = ContentServiceFactory.getInstance().getMetadataSchemaService();
+            MetadataFieldService fieldService = ContentServiceFactory.getInstance().getMetadataFieldService();
+
+            // Get local schema
+            MetadataSchema localSchema = schemaService.findByNamespace(context, "http://dspace.org/local/");
+            if (localSchema == null) {
+                localSchema = schemaService.create(context, "local", "http://dspace.org/local/");
+            }
+
+            // Create fields if they don't exist
+            if (fieldService.findByElement(context, localSchema, "accessibility", "acknowledged") == null) {
+                fieldService.create(context, localSchema, "accessibility", "acknowledged",
+                        "Accessibility guidelines acknowledgment status");
+            }
+
+            if (fieldService.findByElement(context, localSchema, "accessibility", "acknowledgedDate") == null) {
+                fieldService.create(context, localSchema, "accessibility", "acknowledgedDate",
+                        "Date when accessibility guidelines were acknowledged");
+            }
+
+            context.complete();
+        } finally {
+            if (context.isValid()) {
+                context.abort();
+            }
+        }
+    }
     @Autowired
     private ItemService itemService;
 

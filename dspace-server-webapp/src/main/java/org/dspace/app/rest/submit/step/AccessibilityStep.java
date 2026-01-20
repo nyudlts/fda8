@@ -5,14 +5,13 @@
  *
  * http://www.dspace.org/license/
  */
-
 package org.dspace.app.rest.submit.step;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.dspace.app.rest.exception.UnprocessableEntityException;
 import org.dspace.app.rest.model.patch.Operation;

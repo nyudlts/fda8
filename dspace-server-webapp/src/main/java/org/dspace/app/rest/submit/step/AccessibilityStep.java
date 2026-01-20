@@ -1,3 +1,11 @@
+/**
+ * The contents of this file are subject to the license and copyright
+ * detailed in the LICENSE and NOTICE files at the root of the source
+ * tree and available online at
+ *
+ * http://www.dspace.org/license/
+ */
+
 package org.dspace.app.rest.submit.step;
 
 import java.io.Serializable;
@@ -23,8 +31,8 @@ import org.slf4j.LoggerFactory;
  * Accessibility step for DSpace Spring Rest.
  * Requires users to acknowledge they have read accessibility guidelines.
  *
- * Stores the acknowledgment temporarily as item metadata during submission.
- * This metadata can be removed after the item is archived if desired.
+ * Stores the acknowledgment  as item metadata (local.accessibility.acknowledged = true)
+ * and the date of acknowledgment (local.accessibility.acknowledgedDate).
  */
 public class AccessibilityStep extends AbstractProcessingStep {
 

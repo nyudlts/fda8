@@ -231,7 +231,7 @@
                     <label>Rights</label>
                     <input-type>textarea</input-type>
                     <hint> Enter information on item's rights in this box. </hint>
-                    <required/>
+                    <required>You must enter rights information</required>
                 </field>
             </row>
         </form>

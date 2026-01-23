@@ -9,22 +9,22 @@
 		<property name="metadata" value="bitstream-metadata" />
         <property name="options">
             <list>
-                <ref bean="openAccess"/>
-                <ref bean="lease"/>
+               <!-- <ref bean="openAccess"/>
+                  <ref bean="lease"/>
                 <ref bean="embargoed" />
                 <ref bean="administrator"/>
-                <!-- <ref bean="networkAdministration"/> -->
+                <ref bean="networkAdministration"/> -->
             </list>
         </property>
     </bean>
 
-    <bean id="openAccess" class="org.dspace.submit.model.AccessConditionOption">
+ <!--   <bean id="openAccess" class="org.dspace.submit.model.AccessConditionOption">
         <property name="groupName" value="Anonymous"/>
         <property name="name" value="openaccess"/>
         <property name="hasStartDate" value="false"/>
         <property name="hasEndDate" value="false"/>
     </bean>
-    <bean id="lease" class="org.dspace.submit.model.AccessConditionOption">
+  <bean id="lease" class="org.dspace.submit.model.AccessConditionOption">
         <property name="groupName" value="Anonymous"/>
         <property name="name" value="lease"/>
         <property name="hasStartDate" value="false"/>
@@ -44,7 +44,7 @@
         <property name="hasStartDate" value="false"/>
         <property name="hasEndDate" value="false"/>
     </bean>
-<!--     <bean id="networkAdministration" class="org.dspace.submit.model.AccessConditionOption">
+    <bean id="networkAdministration" class="org.dspace.submit.model.AccessConditionOption">
     	<property name="groupName" value="INSTITUTIONAL_NETWORK"/>
         <property name="name" value="networkAdministration"/>
         <property name="hasStartDate" value="false"/>
@@ -67,10 +67,10 @@
         <property name="canChangeDiscoverable" value="true"></property>
         <property name="options">
             <list>
-                <ref bean="openAccess"/>
+              <!--  <ref bean="openAccess"/>
                 <ref bean="lease"/>
                 <ref bean="embargoed" />
-                <ref bean="administrator"/>
+                <ref bean="administrator"/> -->
             </list>
         </property>
     </bean>
@@ -80,18 +80,18 @@
         <property name="name" value="default"/>
         <property name="itemAccessConditionOptions">
             <list>
-                <ref bean="openAccess"/>
-                <ref bean="administrator"/>
+              <!--  <ref bean="openAccess"/>
+               <ref bean="administrator"/>
                 <ref bean="embargoed" />
-                <ref bean="lease"/>
+                <ref bean="lease"/>-->
             </list>
         </property>
         <property name="bitstreamAccessConditionOptions">
             <list>
-                <ref bean="openAccess"/>
-                <ref bean="administrator"/>
+              <!--  <ref bean="openAccess"/>
+              <ref bean="administrator"/>
                 <ref bean="embargoed" />
-                <ref bean="lease"/>
+                <ref bean="lease"/> -->
             </list>
         </property>
     </bean>
